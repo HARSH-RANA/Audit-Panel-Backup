@@ -1,0 +1,214 @@
+
+<link href="../assets/plugins/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+<style>
+
+    i{
+        font-size:30px;
+        cursor:pointer;
+    }
+   
+
+/* .modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 500px;
+} */
+.modal-dialog {
+    overflow-y: initial !important;
+    margin: 2.5vh auto;
+}
+.modal-body {
+    height: 80vh;
+    overflow-y: auto; 
+}
+
+select{
+    font-size: small;
+}
+     
+</style>
+
+
+
+<p class="card-title model_img" id="parameterSuccess" style="display:none"></p> 
+<button class="tst1 btn btn-info" style="display:none">Info Message</button>
+                                
+
+<input type="hidden" id="hiddenCampValue"/>
+ 
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">Campaigns</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="javascript:void(0)">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Campaigns</li>
+                </ol>
+            </div>
+            
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <h4 class="card-title">Campaigns Listing</h4> 
+                            
+                            
+                            
+                        <div class="table-responsive m-t-40">
+                            <table id="campaignListing" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody id="campaignDataBody">
+
+                                   
+                                </tbody>
+                            </table>
+
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+<div class="modal fade bs-add-modal-lg" data-controls-modal="myModal2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Add Question</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body" style="height:70vh !important">
+                <div class="row" id="optionsListDivAdd">
+                 </div>
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success waves-effect text-left" id="submitAddButton" onclick="submitAddParameters()" data-dismiss="">Save</button>
+                <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade bs-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Edit Question</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body" style="height:70vh !important">
+                <div class="row" id="optionsListDiv">
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success waves-effect text-left" onclick="submitEditParameters()" data-dismiss="">Save</button>
+                <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade bs-listing-modal-lg" id="listingModal" data-controls-modal="myModal1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg"> 
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Questions Listing</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-success waves-effect text-left" onclick="initAddOptionsCounter()" data-toggle="modal" data-target=".bs-add-modal-lg" style="float:right">Add</button>
+                <div class="table-responsive m-t-40">
+                    <table id="questionsListing" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="questionsListingRows">
+                            
+                        </tbody>   
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+       
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+       
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+  
+
+
+
+
+
+
+<script src="../../js/campaign_config.js"></script>
+
+<script src="../../assets/js/sweetalert.min.js"></script>
+<script src="../../assets/js/jquery.sweet-alert.custom.js"></script>
+
+<script src="../../assets/plugins/toast-master/js/jquery.toast.js"></script>
+<script src="js/toastr_custom.js"></script>
+
+<script src="../../js/custom.min.js"></script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="../../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+
+   
+        
+        
+
+
+
+
+
+
+

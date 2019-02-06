@@ -1,0 +1,128 @@
+<html>
+    <head>
+        </head>
+        <body>
+            <p>Convert json to csv and download.</p>
+            </body>
+    
+<script>
+    
+function convertToCSV(objArray,type) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+    if(type=='csv'){
+        for (var i = 0; i < array.length; i++) {
+        var line = '';
+        for (var index in array[i]) {
+            if (line != '') line += ','
+
+            line += array[i][index];
+        }
+
+        str += line + '\r\n';
+    }
+    }else{
+        str+='<tr><td>213</td></tr>';
+    }
+    console.log(str);
+
+    return str;
+}
+
+function exportCSVFile(headers, items, fileTitle) {
+    if (headers) {
+        items.unshift(headers);
+    }
+    console.log(items);
+    // Convert Object to JSON
+    var jsonObject = JSON.stringify(items);
+
+    var csv = this.convertToCSV(jsonObject,'csv');
+    return;
+    var type='csv';  
+    if(type=='csv'){
+        var exportedFilename = fileTitle + '.csv' || 'export.csv';
+
+        var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        if (navigator.msSaveBlob) { // IE 10+
+            navigator.msSaveBlob(blob, exportedFilename);
+        } else {
+            var link = document.createElement("a");
+            if (link.download !== undefined) {
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", exportedFilename);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+    }else{
+        sa = true;
+        var myBlob =  new Blob( [csv] , {type:'text/html'});
+        var url = window.URL.createObjectURL(myBlob);
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = "newfile.xls";
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+    
+}
+
+var headers = {
+    agent_name: 'Agent Name',
+    call_date: "Call Date",
+    lead_id: "Lead Id",
+    agent_user_name: "Agent User Name",
+    campaign_id: "Campaign Id",
+    call_id: "Call Id",
+    sub_disposition_id: "Sub Disposition Id",
+    customer_mobile: "Customer Mobile",
+    agent_id: "Agent id",
+    disposition_value: "Disposition Value",
+    disposition_id: "Disposition Id",
+    sub_disposition_value: "Sun Disposition Value",
+    customer_name: "Customer Name",
+    lead_date: "Lead date",
+    call_type: "Call Type",
+    audio_file_url: "Audio File Url"
+}; 
+
+itemsNotFormatted = [{"agent_name": "Animesh Kumar", "call_date": "23-01-2019 12:26:15", "lead_id": 5421567, "agent_user_name": "animeshkumar", "campaign_id": 273, "call_id": 6918288, "sub_disposition_id": 40, "customer_mobile": "09122922240", "agent_id": 1426, "disposition_value": "Not Interested", "disposition_id": 2, "sub_disposition_value": "Not Interested After Pitch", "customer_name": "DEEPAK _", "lead_date": "17-11-2018 14:29:58", "call_type": "Progressive", "audio_file_url": "https://s3.ap-south-1.amazonaws.com/vertage-call-recordings/2019-01-23/TI/TI_9122922240_8067_20190123-122053-all.mp3"}];
+
+var itemsFormatted = [];
+
+// format the data
+// itemsNotFormatted.forEach((item) => {
+//     itemsFormatted.push({
+//         agent_name: item.agent_name.replace(/,/g, ''), 
+//         call_date: item.call_date,
+//         lead_id: item.lead_id,
+//         agent_user_name: item.lead_id,
+//         campaign_id: item.campaign_id,
+//         call_id: item.call_id,
+//         sub_disposition_id: item.sub_disposition_id,
+//         customer_mobile: item.customer_mobile,
+//         agent_id: item.agent_id,
+//         disposition_value: item.disposition_value,
+//         disposition_id: item.disposition_id,
+//         sub_disposition_value: item.sub_disposition_value,
+//         lead_date: item.lead_date,
+//         call_type: item.call_type,
+//         audio_file_url: item.audio_file_url
+//     });
+// });
+// console.log(itemsFormatted);
+
+var fileTitle = 'orders'; // or 'my-unique-title'
+
+exportCSVFile(headers, itemsNotFormatted, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
+
+
+
+    
+</script>
+    <html>

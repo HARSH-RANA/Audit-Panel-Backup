@@ -1,0 +1,227 @@
+
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== 
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor">Dashboard</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php?pageid=0">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </div>
+</div>-->
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row m-t-10">
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row">
+                        <div class="round round-lg align-self-center round-danger"><i class="mdi mdi-bullseye"></i></div>
+                        <div class="m-l-10 align-self-center">
+                            <h3 class="m-b-0 font-lgiht">5687</h3>
+                            <h5 class="text-muted m-b-0">Totals leads</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="round round-lg align-self-center round-info"><i class="ti-wallet"></i></div>
+                    <div class="m-l-10 align-self-center">
+                        <h3 class="m-b-0 font-light">3249</h3>
+                        <h5 class="text-muted m-b-0">Total Calls</h5></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="round round-lg align-self-center round-warning"><i class="mdi mdi-cellphone-link"></i></div>
+                    <div class="m-l-10 align-self-center">
+                        <h3 class="m-b-0 font-lgiht">2376</h3>
+                        <h5 class="text-muted m-b-0">Audited Calls</h5></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="round round-lg align-self-center round-primary"><i class="mdi mdi-cart-outline"></i></div>
+                    <div class="m-l-10 align-self-center">
+                        <h3 class="m-b-0 font-lgiht">1795</h3>
+                        <h5 class="text-muted m-b-0">Audit Left</h5></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    
+</div>
+<!-- Row -->
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap">
+                            <div>
+                                <h3 class="card-title">Audit Overview</h3>
+                                <h6 class="card-subtitle">Last 7 Days</h6>
+                            </div>
+                            <div class="ml-auto">
+                                <ul class="list-inline">
+                                    <li>
+                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Total Calls</h6>
+                                    </li>
+                                    <li>
+                                        <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Audited Calls</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div id="a_sum" style="height: 360px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Auditor Stats</h4>
+                <table class="table m-t-30 no-border">
+                    <thead>
+                        <th >Agent Name</th>
+                        <th >Call Audited</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Agent Name</td>
+                            <td class="text-center"><span class="label label-light-info">77</span></td>
+                        </tr>
+                        <tr>
+                            <td>Agent Name</td>
+                            <td class="text-center"><span class="label label-light-info">90</span></td>
+                        </tr>
+                        <tr>
+                            <td>Agent Name</td>
+                            <td class="text-center"><span class="label label-light-info">54</span></td>
+                        </tr>
+                        <tr>
+                            <td>Agent Name</td>
+                            <td class="text-center"><span class="label label-light-info">34</span></td>
+                        </tr>
+                        <tr>
+                            <td>Agent Name</td>
+                            <td class="text-center"><span class="label label-light-info">23</span></td>
+                        </tr>
+                        <tr>
+                            <td>Agent Name</td>
+                            <td class="text-center"><span class="label label-light-info">12</span></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Sales Audit </h3>
+                <h6 class="card-subtitle">Today</h6>
+                <div id="s_bar" style="height:290px; width:100%;"></div>
+            </div>
+            <div>
+                <hr class="m-t-0 m-b-0">
+            </div>
+            <div class="card-body text-center ">
+                <ul class="list-inline m-b-0">
+                    <li>
+                        <h6 class="text-info"><i class="fa fa-circle font-10 m-r-10 "></i>Approved</h6>
+                    </li>
+                    <li>
+                        <h6 class="text-primary"><i class="fa fa-circle font-10 m-r-10"></i>Non Approved</h6>
+                    </li>
+                    <li>
+                        <h6 class="text-success"><i class="fa fa-circle font-10 m-r-10"></i>Pending</h6>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Disposition Audit </h3>
+                <h6 class="card-subtitle">Today</h6>
+                <div id="d_bar" style="height:290px; width:100%;"></div>
+            </div>
+            <div>
+                <hr class="m-t-0 m-b-0">
+            </div>
+            <div class="card-body text-center ">
+                <ul class="list-inline m-b-0">
+                    <li>
+                        <h6 class="text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Genuine</h6>
+                    </li>
+                    <li>
+                        <h6 class="text-primary"><i class="fa fa-circle font-10 m-r-10"></i>Non Genuine</h6>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Transaction Audit</h3>
+                    <h6 class="card-subtitle">Today</h6>
+                    <div id="t_bar" style="height:290px; width:100%;"></div>
+                </div>
+                <div>
+                    <hr class="m-t-0 m-b-0">
+                </div>
+                <div class="card-body text-center ">
+                    <ul class="list-inline m-b-0">
+                        <li>
+                            <h6 class="text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Fatal</h6>
+                        </li>
+                        <li>
+                            <h6 class="text-primary"><i class="fa fa-circle font-10 m-r-10"></i>Quality</h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="js/dashboardnew.js"></script>

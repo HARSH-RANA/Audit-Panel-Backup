@@ -1,0 +1,534 @@
+<!-- Daterange picker plugins css -->
+
+<style>
+.customtab2 li a.nav-link {
+border: 1px solid #ccc;
+}
+.card .card-subtitle {
+    margin-bottom: 10px;
+}
+.card-subtitle {
+    margin-top: -.375rem;
+    margin-bottom: 0;
+}
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+}
+.hr-text:before {
+  content: "";
+  background: linear-gradient(to right, transparent, #000, transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+.hr-text:after {
+  content: attr(data-content);
+  position: relative;
+  display: inline-block;
+  color: black;
+  padding: 0 0.5em;
+  line-height: 1.5em;
+  color: #000;
+  background-color: #fcfcfa;
+}
+.feeds li:hover {
+    border-bottom: 1px solid #ccc;
+}
+.feeds li {
+    padding: 5px;
+}
+.customtab2 .nav-link {
+    padding: 0.5rem 0.5rem;
+}
+.demo-checkbox label, .demo-radio-button label {
+    min-width: 120px;
+    margin-bottom: 10px;
+}
+[type="radio"] + label::before, [type="radio"] + label::after {
+    margin: 7px;
+    width: 12px;
+    height: 12px;
+}
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+    font-size: 0.9rem;
+}
+
+/* music player css */
+#musicPlayer {
+  position: relative;
+  top: 1px;
+  display: block;   
+  clear: both;
+  text-align: center;
+}
+#bandCover {
+  width: 350px;
+  border-radius: 2px;
+}
+#lowerSide {
+  position: relative;
+  width: 100%;
+  display: block;
+  z-index: 5;
+  border-radius: 5px;
+}
+
+#call_rec {
+    width: 100%;
+}
+
+/* music player css end */
+
+.vtabs .tabs-vertical {
+    width: 100px;
+}
+.nav-link {
+    padding: .5rem .5rem;
+}
+.select2-dropdown {
+    font-size: small;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+    font-size: small; 
+}
+/*
+.modal-content {
+    max-height: 95vh;
+    overflow: hidden;
+}
+.modal-dialog {
+  margin: 2.5vh auto;
+}
+.modal-body {
+  height: 85vh;
+  position: relative !important;
+} */
+.modal-open .modal {
+
+overflow-x: hidden;
+overflow-y: hidden;
+
+}
+.scrollparams {
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+.tab-content{
+    width: 100%;
+    padding-right: 0px !important;
+    margin : 0px !important;
+}
+</style>
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor">Audit</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php?pageid=0">Home</a></li>
+                <li class="breadcrumb-item active">Audit calls</li>
+            </ol>
+        </div>        
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <!-- ============================================================== -->
+    <!-- start Modal box for audit rating -->
+    <!-- ============================================================== -->
+    <div class="modal fade auditmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-controls-modal="auditModal1" data-backdrop="static" data-keyboard="false" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="auditmodal">Audit Call</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                <div class="row m-0" style="    max-height: 82vh;">
+                    <div class="card m-0" style="width:100%;">
+                        <!-- Nav tabs -->
+                        <div id="musicPlayer" style="overflow: hidden;">
+                                <div id="lowerSide">
+                                  <audio id="call_rec" src="" controls>
+                                    <p>I'm sorry but your browser doesn't support the <code>audio</code> element, so you can't listen to audio.</p>
+                                  </audio>
+                                </div>
+                              </div>
+                              <input type="hidden" id="model_call_id" value=""/>
+                        <div class="row m-0"style="overflow: hidden;">      
+                            <ul class="nav nav-tabs customtab2 col-md-10" role="tablist">
+                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#transactional" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Transactional</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#voc" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Voc</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#sales" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Sales</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#dispositiontab" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Disposition</span></a> </li>
+                            </ul>
+                            <button type="button" id="save_audit_params" class="btn waves-effect waves-light btn-rounded btn-sm btn-success col-2" style="float:right;">Save</button>
+                        </div>
+                        <div class="container row"style="overflow: hidden;">
+                        <!-- Tab panes -->
+                            <div class="tab-content" style="width: 100%;">
+                                <div class="tab-pane active" id="transactional" role="tabpanel">
+                                        <div class="vtabs customvtab">
+                                            <ul class="nav nav-tabs tabs-vertical" role="tablist">
+                                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#transactional_dynamic" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Dynamic</span> </a> </li>
+                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#transactional_static" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Static</span></a> </li>
+                                                
+                                            </ul>
+                                            <!-- Tab panes -->
+                                            <div class="tab-content" >
+                                                <div class="tab-pane active scrollparams" id="transactional_dynamic" role="tabpanel">
+                                                </div>
+                                                <div class="tab-pane scrollparams" id="transactional_static" role="tabpanel">
+                                                    <!--<h6 class="card-title">Fatal</h6>
+                                                    <div class="demo-radio-button">
+                                                        <input name="transactional_fatal" type="radio" id="transactional_fatal_0" value="0" checked="checked">
+                                                        <label for="transactional_fatal_0">No</label>
+                                                        <input name="transactional_fatal" type="radio" id="transactional_fatal_1" value="1">
+                                                        <label for="transactional_fatal_1">Yes</label>
+                                                    </div>
+                                                    <h6 class="card-title">Feedback Status</h6>
+                                                    <div class="demo-radio-button">
+                                                        <input name="transactional_feedback_status" type="radio" id="transactional_feedback_status_0" value="0" checked="checked">
+                                                        <label for="transactional_feedback_status_0">Not-Applicable</label>
+                                                        <input name="transactional_feedback_status" type="radio" id="transactional_feedback_status_1" value="1">
+                                                        <label for="transactional_feedback_status_1">Pending</label>
+                                                        <input name="transactional_feedback_status" type="radio" id="transactional_feedback_status_2" value="2">
+                                                        <label for="transactional_feedback_status_2">Shared</label>
+                                                    </div>
+                                                    <h6 class="card-title">Remarks</h6>
+                                                    <textarea class="form-control" id="transactional_remarks" rows="3"></textarea>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="tab-pane" id="voc" role="tabpanel">
+                                    <div class="vtabs customvtab">
+                                        <ul class="nav nav-tabs tabs-vertical" role="tablist">
+                                            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#voc_dynamic" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Dynamic</span> </a> </li>
+                                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#voc_dynamic_csat" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Dynamic CSAT</span></a> </li>
+                                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#voc_static" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Static</span></a> </li>
+                                            
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div class="tab-pane active scrollparams" id="voc_dynamic" role="tabpanel">
+                                            </div>
+                                            <div class="tab-pane scrollparams" id="voc_dynamic_csat" role="tabpanel">
+                                            </div>
+                                            <div class="tab-pane scrollparams" id="voc_static" role="tabpanel">
+                                                <!--<h6 class="card-title">VOC Status</h6>
+                                                <div class="demo-radio-button">
+                                                    <input name="voc_status" type="radio" id="voc_status_0" value="0" checked="checked">
+                                                    <label for="voc_status_0">No</label>
+                                                    <input name="voc_status" type="radio" id="voc_status_1" value="1">
+                                                    <label for="voc_status_1">Yes</label>
+                                                </div>
+                                                <h6 class="card-title">Verification Status</h6>
+                                                <div class="demo-radio-button">
+                                                    <input name="voc_verification_status" type="radio" id="voc_verification_status_0" value="0" checked="checked">
+                                                    <label for="voc_verification_status_0">No</label>
+                                                    <input name="voc_verification_status" type="radio" id="voc_verification_status_1" value="1">
+                                                    <label for="voc_verification_status_1">Yes</label>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="sales" role="tabpanel">
+                                    <div class="vtabs customvtab">
+                                        <ul class="nav nav-tabs tabs-vertical" role="tablist">
+                                            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#sales_dynamic" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Dynamic</span> </a> </li>
+                                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#sales_static" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Static</span></a> </li>
+                                            
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div class="tab-pane active scrollparams" id="sales_dynamic" role="tabpanel">
+                                            </div>
+                                            <div class="tab-pane scrollparams" id="sales_static" role="tabpanel">
+                                                <!-- <h6 class="card-title">Fatal</h6>
+                                                <div class="demo-radio-button">
+                                                    <input name="sales_fatal" type="radio" id="sales_fatal_0" value="0" checked="checked">
+                                                    <label for="sales_fatal_0">No</label>
+                                                    <input name="sales_fatal" type="radio" id="sales_fatal_1" value="1">
+                                                    <label for="sales_fatal_1">Yes</label>                                                
+                                                </div>
+                                                <h6 class="card-title">Fatal Reason</h6>
+                                                <textarea class="form-control" id="sales_fatal_reasons" rows="3"></textarea>
+                                                <h6 class="card-title">Remarks</h6>
+                                                <textarea class="form-control" id="sales_remarks" rows="3"></textarea>
+                                                <h6 class="card-title">Area Of Improvment</h6>
+                                                <textarea class="form-control" id="sales_area_of_improvement" rows="3"></textarea>
+                                                <h6 class="card-title">status</h6>
+                                                <div class="demo-radio-button">
+                                                    <input name="sales_status" type="radio" id="sales_status" value="0" checked="checked">
+                                                    <label for="sales_status_0">No</label>
+                                                    <input name="sales_status" type="radio" id="sales_status_1" value="1">
+                                                    <label for="sales_status_1">Yes</label>                                                
+                                                </div>
+                                                <h6 class="card-title">Feedback Status</h6>
+                                                <div class="demo-radio-button">
+                                                    <input name="sales_feedback_status" type="radio" id="sales_feedback_status_0" value="0" checked="checked">
+                                                    <label for="sales_feedback_status_0">Not Approved</label>
+                                                    <input name="sales_feedback_status" type="radio" id="sales_feedback_status_1" value="1">
+                                                    <label for="sales_feedback_status_1">Pending</label>  
+                                                    <input name="sales_feedback_status" type="radio" id="sales_feedback_status_2" value="2">
+                                                    <label for="sales_feedback_status_2">Connected</label>                                                
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="dispositiontab" role="tabpanel">
+                                        <div class="vtabs customvtab">
+                                            <ul class="nav nav-tabs tabs-vertical" role="tablist">
+                                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#disposition_static" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Static</span></a> </li>
+                                                
+                                            </ul>
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane active scrollparams" id="disposition_static" role="tabpanel">
+                                                    <!-- <h6 class="card-title">Remarks</h6>
+                                                    <textarea class="form-control" id="disposition_remarks" rows="3"></textarea>
+                                                    <h6 class="card-title">Area Of Improvment</h6>
+                                                    <textarea class="form-control" id="disposition_area_of_improvement" rows="3"></textarea>
+                                                    <h6 class="card-title">status</h6>
+                                                    <div class="demo-radio-button">
+                                                        <input name="disposition_status" type="radio" id="disposition_status_0" value="0" checked="checked">
+                                                        <label for="disposition_status_0">No</label>
+                                                        <input name="disposition_status" type="radio" id="disposition_status_1" value="1">
+                                                        <label for="sales_status_1">Yes</label>                                                
+                                                    </div>
+                                                    <h6 class="card-title">Feedback Status</h6>
+                                                    <div class="demo-radio-button">
+                                                        <input name="disposition_feedback_status" type="radio" id="disposition_feedback_status_0" value="0" checked="checked">
+                                                        <label for="disposition_feedback_status_0">Not Approved</label>
+                                                        <input name="disposition_feedback_status" type="radio" id="disposition_feedback_status_1" value="1">
+                                                        <label for="disposition_feedback_status_1">Pending</label>  
+                                                        <input name="disposition_feedback_status" type="radio" id="disposition_feedback_status_2" value="2">
+                                                        <label for="disposition_feedback_status_2">Connected</label>                                                
+                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                </div>
+                    
+               
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end Modal box for audit rating -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- start Modal box for call info -->
+    <!-- ============================================================== -->
+    <div class="modal fade auditinfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="auditinfo">Call Info</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="feeds">
+                                <li>
+                                    Lead Id <span class="text-muted" id="info_lead_id"></span></li>
+                                <li>
+                                    Agent Name <span class="text-muted" id="info_agn_name"></span></li>
+                                <li>
+                                    Call Date<span class="text-muted" id="info_call_date"></span></li>
+                                <li>
+                                    Call Type<span class="text-muted" id="info_call_type"></span></li>
+                                <li>
+                                    Customer Mobile<span class="text-muted" id="info_cus_no"></span></li>
+                                <li>
+                                    Customer Name <span class="text-muted" id="info_cus_name"></span></li>
+                                <li>
+                                    Disposition <span class="text-muted" id="info_disp"></span></li>
+                                <li>
+                                <li>
+                                    Sub Disposition <span class="text-muted" id="info_sub_disp"></span></li>
+                                <li>
+                                    Lead Date<span class="text-muted" id-"info_lead_date"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    
+                
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end Modal box for audit call Info -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 align-self-center">
+                            <h4 class="card-title">Audit calls</h4>
+                        </div>
+                        <div class='form-group col-md-3 mb-0'>
+                                   <!-- <h6 class="card-subtitle">Select Date Range</h6> -->
+                                   <div id="reportrange" style="background: #fff; cursor: pointer; padding: 7px 5px;border-radius: 3px;border: 1px solid #ccc; width: 100%;font-size : small;">
+                                        <i class="fa fa-calendar"></i><i class="fa fa-caret-down" style="margin-left: 5px;" ></i>
+                                        <span style="margin-left: 10px;"></span>
+                                     </div>
+                                </div>
+                        <div class='form-group col-md-4 mb-0'>
+                                    <!-- <h6 class="card-subtitle">Select Project</h6> -->
+                                    <div class="input-group">
+                                        <select class="form-control input-sm select2" id="project" onchange="getAuditTableData()">
+                                            <option value='0' selected="">Choose Project</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        <div class="col-md-1 col-1 align-self-right">
+                            <button class="waves-effect waves-light btn-success btn btn-circle btn-sm pull-right float-right" id="filter_btn"><i class="mdi mdi-filter"></i></button>
+                        
+                        </div>
+                        <!-- <div class="col-md-1 col-1 align-self-center">
+                            <button id='submit' class="waves-effect waves-light btn-success btn btn-circle btn-sm pull-right float-right"><i class="mdi mdi-subdirectory-arrow-right"></i></button>
+                        </div> -->
+                    </div>
+                <!-- sample modal content -->
+                <div class="modal fade bs-example-modal-lg"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myLargeModalLabel">Filter Calls</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                            <div class="row">
+                                
+                                
+                                <div class='form-group col-md-6'>
+                                    <h6 class="card-subtitle">Select Dispostions</h6>
+                                    <div class="input-group ">
+                                        <select class="form-control form-control-sm select2" id="disposition">
+                                            <option value='0' selected="">Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class='form-group col-md-6'>
+                                    <h6 class="card-subtitle">Select Sub Dispositions</h6>
+                                    <div class="input-group ">
+                                        <select class="form-control form-control-sm select2" id="subdisposition">
+                                            <option value='0' selected="">Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class='form-group col-md-6'>
+                                    <h6 class="card-subtitle">Select Agent</h6>
+                                    <div class="input-group ">
+                                        <select class="form-control form-control-sm select2" id="agent">
+                                            <option value='0' selected="">Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-12 m-t-20" style="height: 20px; border-bottom: 1px solid black; text-align: center">
+                                    <span style="background-color: #F3F5F6; padding: 0 10px;">
+                                        OR
+                                    </span>
+                                </div> -->
+                                <div class='form-group col-md-12'>
+                                <hr class="hr-text" data-content="OR">
+                                    <h6 class="card-subtitle">Lead Id</h6>
+                                    <input type='text' class="form-control form-control-sm" id='leadid'/>
+                                </div> 
+                            </div>
+                            </div>
+                            <input type="hidden" id="todate" value=""/>
+                            <input type="hidden" id="fromdate" value=""/>
+                            <div class="modal-footer">
+                                <button type="button" id="submit1" onclick="getAuditTableData()" class="btn btn-primary btn-sm waves-effect text-left" data-dismiss="modal">Submit</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal --> 
+                <div class="table-responsive m-t-40">
+                    <div class="row m-0">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="control-label text-right col-md-3">Show</label>
+                                    <div class="col-md-3">
+                                            <select id="auditTablePPRecords" name="campaignListing_length" aria-controls="campaignListing" class="form-control form-control-sm" onchange="getAuditTableData()"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select>
+                                    </div>
+                                    <label class="control-label text-left col-md-3">Entries</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" onclick="download('csv')" class="btn waves-effect waves-light btn-sm btn-info float-right m-1">CSV</button>
+                                <!-- <button type="button" onclick="download('excel')" class="btn waves-effect waves-light btn-sm btn-info float-right m-1">Excel</button>
+                                --></div>
+                           
+                           <!-- <label class="col-md-6">Show<select id="auditTablePPRecords" name="campaignListing_length" aria-controls="campaignListing" class="form-control form-control-sm col-md-1" onchange="getAuditTableData()"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select>entries</label> 
+                            <label class="col-md-6"><button type="button" onclick="download" class="btn waves-effect waves-light btn-rounded btn-xs btn-info">Download</button></label>
+                           -->
+                    </div>
+                        <table id="audittable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Call ID</th>
+                                <th>Mobile</th>
+                                <th>Disposition</th>
+                                <th>Sub Disposition</th>
+                                <th>Call Date</th>
+                                <th>Audit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="audittablebody"> 
+                        </tbody>
+                        
+                       
+                    </table>
+                </div>    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+
+<script src="/js/audit.js"></script> 
+<!-- end - This is for export functionality only -->
+ 

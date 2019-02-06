@@ -1,0 +1,106 @@
+<link href="../assets/plugins/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+
+
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row m-t-10">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                                <select class="form-control input-sm select2" id="campaignNameReport" onchange="getReport(-1)" style="border: 1px solid #ccc;border-radius: 3px;background: #fff; cursor: pointer; padding: 7px 5px;font-size : small;height:35px;width: 100%;"> 
+                                    <option value="-1" selected="">Select campaign</option> 
+                                </select>
+                                   
+                        </div>
+                        
+                        <div class="col-md-3 ">
+                            <select id="reportType" class="form-control input-sm select2" onchange="getReport(-1)" style="border: 1px solid #ccc;border-radius: 3px;background: #fff; cursor: pointer; padding: 7px 5px;font-size : small;height:35px;width: 100%;">
+                                <option value="-1" selected>Select report</option>
+                                <option value="disposition">Disposition</option>
+                                <option value="sales">Sales</option>
+                                <option value="transactional">Transactional</option>
+                                <option value="voc">VOC</option>
+                            </select>
+                        </div> 
+                        
+                        <div class="col-md-2" >
+                            <select id="inlineFormCustomSelect" class="form-control input-sm select2" onchange="getReport(-1)" style="background: #fff; cursor: pointer; padding: 7px 5px;border-radius: 3px;border: 1px solid #ccc; width: 100%;font-size : small;height:35px">
+                                <option value="-1" selected>Select type</option>
+                                <option value="agent">Agent Wise</option>
+                                <option value="manager">Manager Wise</option>
+                                <option value="auditor">Auditor Wise</option> 
+                            </select>
+                        </div>
+                        <div class='col-md-3'> 
+                            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 7px 5px;border-radius: 3px;border: 1px solid #ccc; width: 100%;font-size : small;">
+                                <i class="fa fa-calendar"></i><i class="fa fa-caret-down" style="margin-left: 5px;" ></i>
+                                <span style="margin-left: 10px;"></span>
+                            </div>
+                        </div>
+                            
+                        
+                        <!-- <div class="col-md-1">
+                            <button type="button" class="btn waves-effect waves-light btn-success" onclick="getReport()" style="float:right;">Submit</button>
+                        </div> -->
+                    </div>
+                        <div class="table-responsive m-t-40">
+                                <div class="row m-0" id="reportContent">
+                                        <div class="col-md-6 dataTables_wrapper"> 
+                                            <div class="row">
+                                                <!-- <label class="control-label text-left">Show</label>
+                                                <div class="col-md-3">
+                                                        <select id="reportTablePPRecords" name="reportListing_length" aria-controls="reportListing" class="form-control form-control-sm" onchange="getReport()"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select>
+                                                </div>
+                                                <label class="control-label text-left">Entries</label> -->
+
+                                                <div class="col-sm-12 col-md-6 p-l-0"><div class="dataTables_length"><label>Show <select id="reportTablePPRecords" name="reportListing_length" aria-controls="reportListing" class="form-control form-control-sm" onchange="getReport()"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select> entries</label></div></div>
+                                            </div>
+                                        </div> 
+                                        <div class="col-md-6 m-t-20">
+                                            <button type="button" onclick="downloadreport('csv')" class="btn waves-effect waves-light btn-sm btn-info float-right m-1">CSV</button>
+                                            <!-- <button type="button" onclick="downloadreport('excel')" class="btn waves-effect waves-light btn-sm btn-info float-right m-1">Excel</button> -->
+                                        </div>
+                                       
+                                       
+                                </div>
+                            <table id="auditReportTable" class="display nowrap table color-table muted-table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                
+                            </table> 
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+       
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+
+<script src="../../assets/js/sweetalert.min.js"></script>
+<script src="../../assets/js/jquery.sweet-alert.custom.js"></script>
+
+<script src="../../assets/plugins/toast-master/js/jquery.toast.js"></script>   
+<script src="../../js/report.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->

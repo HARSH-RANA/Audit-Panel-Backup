@@ -1,0 +1,154 @@
+<link href="../assets/plugins/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">Reporting</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="index.php?pageid=0">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Report</li>
+                </ol>
+            </div>
+            
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3 ">
+                            <select id="reportType" style="border: 1px solid #ccc;border-radius: 3px;background: #fff; cursor: pointer; padding: 7px 5px;font-size : small;height:35px;width: 100%;">
+                                <option value="-1" selected>Select report</option>
+                                <option value="disposition">Disposition</option>
+                                <option value="sales">Sales</option>
+                                <option value="transactional">Transactional</option>
+                                <option value="voc">VOC</option>
+                            </select>
+                        </div> 
+                        <div class='col-md-3'> 
+                            <div id="dispositionreportrange" style="background: #fff; cursor: pointer; padding: 7px 5px;border-radius: 3px;border: 1px solid #ccc; width: 100%;font-size : small;">
+                                <i class="fa fa-calendar"></i><i class="fa fa-caret-down" style="margin-left: 5px;" ></i>
+                                <span style="margin-left: 10px;"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3" >
+                            <select id="inlineFormCustomSelect" style="background: #fff; cursor: pointer; padding: 7px 5px;border-radius: 3px;border: 1px solid #ccc; width: 100%;font-size : small;height:35px">
+                                <option value="-1" selected>Select type</option>
+                                <option value="agent">Agent Wise</option>
+                                <option value="manager">Manager Wise</option>
+                                <option value="auditor">Auditor Wise</option>
+                            </select>
+                        </div>
+                            
+                        
+                        <div class="col-2">
+                            <button type="button" class="btn waves-effect waves-light btn-success" style="float:right;">Get Report</button>
+                        </div>
+                    </div>
+                        <div class="table-responsive m-t-40">
+                            <table id="dispositionAgentReport" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Agent Name</th>
+                                        <th>Non-Genuine</th>
+                                        <th>Genuine</th>
+                                        <th>Grand Total</th>
+                                        <th>Genuine %</th>
+                                        <th>Non-Genuine %</th>
+                                    </tr>
+                                </thead>
+                                <!-- <tfoot>
+                                    <tr>
+                                        <th>Grand Total</th>
+                                        <th>7</th>
+                                        <th>2</th>
+                                        <th>60.00%</th>
+                                        <th>60.00%</th>
+                                        <th>20.78%</th>
+                                    </tr>
+                                </tfoot> -->
+                                <tbody>
+                                    <tr>
+                                        <td>Ashutosh Richariya</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>60.00%</td>
+                                        <td>00.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Devender Soni</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>60.00%</td>
+                                        <td>50.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kanchan</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>60.00%</td>
+                                        <td>00.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prachi Diwedi</td>
+                                        <td>3</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>60.00%</td>
+                                        <td>33.33%</td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+       
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+  
+<script src="/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!-- This is data table -->
+<script src="/assets/plugins/datatables/datatables.min.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="//cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+   
+<script src="../../js/disposition_report.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+  
