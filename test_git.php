@@ -2,6 +2,7 @@
 
 echo 'added new file at local';
 echo 'edited file at local';
-echo 'edited file at remote';
+echo 'edited file at remote repo';
+
 
 ?>
